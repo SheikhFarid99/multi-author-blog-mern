@@ -1,0 +1,63 @@
+.all-sub-admin{
+    .elements-numberOf-search-add_new{
+        padding: 15px ;
+        background-color: #fff;
+        box-shadow: var(--shadow_color);
+        .loading-elements{
+            .elements{
+                padding-top: 15px;
+                table{
+                    width: 100%;
+                    border-spacing: 0;
+                    tr{
+                        text-align: left;
+                        th,td{
+                            padding: 3px 8px;
+                        }
+                    }
+                    thead{
+                        tr{
+                            th{
+                                padding: 8px;
+                            }
+                        }
+                        background-color: #f0f0f0;
+                    }
+                    tbody{
+                        tr{
+                            &:hover{
+                                background-color: #d8d4d4;
+                            }
+                            img{
+                                display: flex;
+                            }
+                            td{
+                                img{
+                                    width: 30px;
+                                    height: 30px;
+                                    border-radius: 30px;
+                                }
+                                span.sus,span.unsus{
+                                    background-color: red;
+                                }
+                                span,a{
+                                    box-shadow: 0 2px 6px 0 #6efa5c80;
+                                    color: #fff;
+                                    background-color: #39e023;
+                                    font-weight: 400;
+                                    border: 1px solid transparent;
+                                    padding: 2px 5px;
+                                    margin-right: 5px;
+                                    font-size: 12px;
+                                    border-radius: 20px;
+                                    transition: all .5s;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

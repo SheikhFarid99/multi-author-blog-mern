@@ -1,0 +1,196 @@
+.home{
+    background-color: var(--second_bg);
+    .main-content{
+        .container{
+            padding-top: 25px;
+            padding-bottom: 25px;
+            .row{
+                .col-8{
+
+                }
+                .col-4{
+                    .search-category-tag{
+                        margin-left: 10px;
+                        .search{
+                            padding: 15px 10px;
+                            text-align: center;
+                            background-color: var(--main_bg);
+                            box-shadow: var(--shadow_color);
+                            h2{
+                                text-transform: uppercase;
+                                margin-bottom: 18px;
+                            }
+                            .form-group{
+                                .form-control{
+                                    padding: 5px;
+                                }
+                                .btn{
+                                    background-color: #4ad840;
+                                    text-transform: uppercase;
+                                    font-weight: 400;
+                                    transition: all .3s;
+                                    color: #fff;
+                                    &:hover{
+                                        background-color: #2ed223;
+                                    }
+                                }
+                            }
+                        }
+                        .popular-artical{
+                            margin-top: 28px;
+                            background-color: var(--main_bg);
+                            box-shadow: var(--shadow_color);
+                            .title{
+                                padding: 10px;
+                                text-align: center;
+                                background-color: #ffeb3b;
+                                margin-bottom: 25px;
+                                h3{
+                                    color: var(--text_color);
+                                    font-size: 14px;
+                                    text-transform: uppercase;
+                                    font-weight: 700;
+                                }
+                            }
+                            .row{
+                                padding: 0px 10px 10px 10px;
+                                margin: 22px 0px;
+                                .col-4{
+                                    a.image{
+                                        height: 70px;
+                                        img{
+                                            width: 100%;
+                                            object-fit: cover;
+                                        }
+                                    }
+                                }
+                                .col-8{
+                                    .title-time{
+                                        padding: 0px 10px;
+                                        a{
+                                            color: var(--text_color);
+                                            font-size: 15px;
+                                            font-weight: 700;
+                                            transition: all .5s;
+                                            &:hover{
+                                                color: #009688;
+                                            }
+                                        }
+                                        span{
+                                            color: var(--text_color);
+                                            font-size: 12px;
+                                            text-transform: uppercase;
+                                            line-height: 1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .flow-facebook{
+                            .title{
+                                padding: 6px 5px;
+                                text-align: center;
+                                background-color: #6AF008;
+                                margin-bottom: 10px;
+                                h3{
+                                    color: #404040;
+                                    font-size: 16px;
+                                    text-transform: uppercase;
+                                    font-weight: 700;
+                                }
+                            }
+                            .image{
+                                display: flex;
+                                justify-content: center;
+                            }
+                        }
+                        .category{
+                            background-color: var(--main_bg);
+                            box-shadow: var(--shadow_color);
+                            margin-top: 22px;
+                            .title{
+                                padding: 6px 5px;
+                                background-color: #e2f52b;
+                                text-align: center;
+                                margin-bottom: 16px;
+                            }
+                            ul.cate-list{
+                                padding: 0px 10px 10px 10px;
+                                .cate-item{
+                                    display: flex;
+                                    justify-content: space-between;
+                                    padding: 8px 0px;
+                                    cursor: pointer;
+                                    transition: all .5s;
+                                    li{
+                                        display: flex;
+                                        align-items: center;
+                                        a{
+                                            color: var(--text_color);
+                                            font-size: 16px;
+                                            font-weight: 700;
+                                            transition: all .5s;
+                                            &:hover{
+                                                color: #ff9800;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .tag{
+                            background-color: var(--main_bg);
+                            box-shadow: var(--shadow_color);
+                            margin-top: 22px;
+                            .title{
+                                padding: 6px 5px;
+                                background-color: #03a9f4;
+                                text-align: center;
+                                margin-bottom: 20px;
+                            }
+                            ul{
+                                padding: 0px 10px 10px 10px;
+                                flex-wrap: wrap;
+                                display: flex;
+                                grid-gap: 10px;
+                                li{
+                                    padding: 5px 8px;
+                                    background-color: #4caf50;
+                                    transition: all .5s;
+                                    border-radius: 2px;
+                                    font-weight: 400;
+                                    a{
+                                        color: #fff;
+                                    }
+                                    &:hover{
+                                        background-color: #ff9800;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #scroll{
+        .scroll-btn{
+            width: 35px;
+            height: 35px;
+            background-color: #008009;
+            border: none;
+            position: fixed;
+            right: 2%;
+            top : 92%;
+            cursor: pointer;
+            color: #fff;
+            font-size: 17px;
+            border-radius: 2px;
+            span{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+}

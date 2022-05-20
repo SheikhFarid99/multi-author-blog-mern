@@ -1,0 +1,87 @@
+.dashborad-article{
+    .article-action-pagination{
+        min-height: calc(100vh - 100px);
+        padding: 10px 14px;
+        background-color: #fff;
+        justify-content: space-between;
+        flex-direction: column;
+        .height-70vh{
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            .articles{
+                display: grid;
+                grid-template-columns: repeat(4,1fr);
+                grid-gap: 10px;
+                width: 100%;
+                .article{
+                    position: relative;
+                    min-height: 250px;
+                    display: flex;
+                    width: 100%;
+                    flex-direction: column;
+                    background-color: #fff;
+                    padding: 8px;
+                    border: 1px solid #f0f0f0;
+                    box-shadow: 0px 0px 2px #f0f0f0;
+                    img{
+                        width: 100%;
+                        margin-bottom: 6px;
+                        height: 180px;
+                    }
+                    a{
+                        color: #404040;
+                        font-size: 16px;
+                        font-weight: 600;
+                    }
+                    p{
+                        color: #404040;
+                        margin-bottom: 6px;
+                        font-size: 13px;
+                    }
+                    &:hover{
+                        .action{
+                            transform: scale(1) !important;
+                        }
+                    }
+                    .action{
+                        transform: scale(0);
+                        transition: all .5s;
+                        position: absolute;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-around;
+                        padding: 8px;
+                        z-index: 99;
+                        color: #fff;
+                        a{
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: #fff;
+                        }
+                        span{
+                           margin-right: 8px;
+                           background-color: #18e418;
+                           font-size: 15px;
+                           font-weight: 500;
+                           cursor: pointer;
+                           width: 25px;
+                           height: 25px;
+                           border-radius: 50%;
+                           display: flex;
+                           justify-content: center;
+                           align-items: center;
+                           &:first-child{
+                               background-color: #ff9800;
+                           }
+                           &:last-child{
+                            background-color: #f44336;
+                        }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

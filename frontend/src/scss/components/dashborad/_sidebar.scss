@@ -1,0 +1,100 @@
+.dashborad-main-content-sidebar {
+    width: 275px;
+    background-color: rgb(16, 18, 44);
+    height: 100vh;
+    position: fixed;
+    //box-shadow: 0 0 0 0 rgba(90, 113, 208, 0.11) ,0 4px 16px 0 rgba(167, 175, 183, 0.83);
+    left: 0;
+    top: 70px;
+    transition: all 0.5s;
+    z-index: 999;
+    overflow-y: auto;
+    ul {
+        padding: 20px 0px;
+        display: flex;
+        flex-direction: column;
+
+        #article,#category,#tag,#user{
+            display: none;
+        }
+
+        #article:checked~li .article_category{
+            height: 70px !important;
+        }
+        #article:checked~li label span.right_icon1{
+            transform: rotate(90deg);
+            transition: all .5s;
+        }
+
+        #category:checked~li .category_category{
+            height: 70px !important;
+        }
+        #category:checked~li label span.right_icon2{
+            transform: rotate(90deg);
+            transition: all .5s;
+        }
+
+        #tag:checked~li .tag_category{
+            height: 70px !important;
+        }
+        #tag:checked~li label span.right_icon3{
+            transform: rotate(90deg);
+            transition: all .5s;
+        }
+
+        #user:checked~li .user_category{
+            height: 70px !important;
+        }
+        #user:checked~li label span.right_icon4{
+            transform: rotate(90deg);
+            transition: all .5s;
+        }
+        li {
+            min-height: 35px;
+            label {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px 20px;
+                cursor: pointer;
+                color: #fff;
+                span.right_icon {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 14px;
+                    transition: all .5s;
+                }
+                h3 {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    grid-gap: 8px;
+                    span {
+                        font-size: 15px;
+                    }
+                }
+            }
+            .article_category,.category_category,.tag_category,.user_category{
+                padding-left: 30px;
+                display: flex;
+                flex-direction: column;
+                transition: all .5s;
+                height: 0px;
+                overflow: hidden;
+
+                a{
+                    cursor: pointer;
+                    padding: 8px 0px 8px 20px;
+                    display: flex;
+                    align-items: center;
+                    grid-gap: 8px;
+                    span{
+                        font-weight: 500;
+                        color: #fff;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}

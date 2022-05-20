@@ -1,0 +1,77 @@
+.add-article {
+    margin-left: 275px;
+    padding: 85px 12px 12px 12px;
+    .add {
+        background-color: #fff;
+        padding: 15px;
+        box-shadow: 0 0 0 0 rgba(90, 113, 208, 0.11), 0 4px 16px 0 rgba(167, 175, 183, 0.83);
+        border: 1px solid rgba(234, 236, 238, 0.83);
+        form{
+            .form-group.img_upload{
+                position: relative;
+                .upload{
+                    position: absolute;
+                    right: 10px;
+                    label{
+                        padding: 10px;
+                        cursor: pointer;
+                        font-size: 20px;
+                        padding-left: 0px;
+                    }
+                    #upload_image{
+                        display: none;
+                    }
+                }
+            }
+            .form-group{
+                .btn{
+                    background-color: #1d244e;
+                    color: #fff;
+                    &:hover{
+                        background-color: #181f46;
+                    }
+                }
+                label{
+                    color: #404040;
+                }
+                p.error{
+                    color: red;
+                }
+                .form-control{
+                    margin: 4px 0px;
+                }
+                .image-select{
+                    margin: 5px 0px 15px 0px;
+                    border: 1px solid #dee2e6;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    height: 35px;
+                    label{
+                        padding: 0px 6px;
+                        background-color: #b187ed;
+                        border-color: #b187ed;
+                        color: #fff;
+                        font-weight: 500;
+                        cursor: pointer;
+                        height: 35px;
+                        display: flex;
+                        align-items: center;
+                        &:hover{
+                            background-color: #a372e7;
+                        }
+                    }
+                    span{
+                        display: flex;
+                        align-items: center;
+                        padding-left: 8px;
+                        color: #404040;
+                    }
+                }
+                #image{
+                    display: none;
+                }
+            }
+        }
+    }
+}

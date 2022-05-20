@@ -1,0 +1,31 @@
+.pagination{
+    display: flex;
+    ul{
+        display: flex;
+        margin-bottom: 8px;
+        margin-top: 15px;
+        grid-gap: 5px;
+
+        li.active{
+            background-color: #448db1;
+            color: #fff;
+        }
+        .not-hover{
+            &:hover{
+                background-color: #b4ccd8;
+            }
+        }
+        li,button{
+            background-color: #b4ccd8;
+            border: 1px solid white;
+            height: 33px;
+            width: 33px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+        }
+    }
+}

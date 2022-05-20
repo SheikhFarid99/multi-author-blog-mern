@@ -1,0 +1,118 @@
+.dashborad {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    .adminInfo {
+        position: fixed;
+        top: 73px;
+        z-index: 9999;
+        width: 250px;
+        background-color: #fff;
+        right: 10px;
+        padding: 15px;
+        transform: scale(0);
+        box-shadow: 0 0 0 0 rgba(90, 113, 208, 0.11), 0 4px 16px 0 rgba(167, 175, 183, 0.83);
+        border: 1px solid rgba(217, 220, 223, 0.83);
+        transition: all 0.5s;
+        .image-email {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            img {
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+            }
+            span {
+                margin-top: 5px;
+            }
+        }
+        ul {
+            margin-top: 15px;
+            li {
+                padding: 8px 0px;
+                a {
+                    color: #404040;
+                }
+                span {
+                    cursor: pointer;
+                    color: #404040;
+                }
+            }
+        }
+    }
+    &-main-content {
+        min-height: 100vh;
+        width: 100%;
+        &-elements {
+            margin-left: 275px;
+            padding: 95px 15px 15px 15px;
+            transition: all 0.5s;
+            .dashborad-elements {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                grid-gap: 16px;
+                transition: all 0.5s;
+                .cards {
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    grid-gap: 16px;
+                    transition: all 0.5s;
+                    .single-card {
+                        position: relative;
+                        display: flex;
+                        background-color: #fff;
+                        box-shadow: 0 0 0 0 rgba(90, 113, 208, 0.11), 0 4px 16px 0 rgba(167, 175, 183, 0.83);
+                        overflow: hidden;
+                        height: 100px;
+                        border-radius: 10px;
+                        cursor: pointer;
+                        transition: all 0.5s ease 0s;
+                        color: #404040;
+                        .card_icon {
+                            width: 30%;
+                            height: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            font-size: 30px;
+                            z-index: 1;
+                        }
+                        .card_info {
+                            flex-grow: 1;
+                            display: flex;
+                            flex-direction: column;
+                            text-align: center;
+                            justify-content: center;
+                            z-index: 1;
+                            text-transform: capitalize;
+                        }
+                        &::before {
+                            content: "";
+                            width: 100%;
+                            padding-top: 100%;
+                            background-image: linear-gradient(to top right, gray, aqua);
+                            position: absolute;
+                            left: -50%;
+                            right: 0;
+                            transition: all 0.8s;
+                            border-radius: 50%;
+                        }
+                        &:hover::before {
+                            transform: scale(3);
+                        }
+                        &:hover{
+                            color: #fff;
+                        }
+                    }
+                }
+                .card-chart{
+                    background-color: #fff;
+                    box-shadow: 0 0 0 0 rgba(90, 113, 208, 0.11), 0 4px 16px 0 rgba(167, 175, 183, 0.83);
+                    height: 300px;
+                }
+            }
+        }
+    }
+}

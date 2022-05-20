@@ -1,0 +1,114 @@
+section#footer {
+    background-color: #131313;
+    .footer {
+        .container {
+            .row {
+                .col-4 {
+                    .title {
+                        padding: 24px 0px;
+                        h3 {
+                            color: #fff;
+                            font-size: 18px;
+                            text-transform: uppercase;
+                            font-weight: 700;
+                        }
+                    }
+                    .some-recent-artical {
+                        margin-bottom: 20px;
+                        .row {
+                            .col-4 {
+                                width: 100px;
+                                height: 80px;
+                                .img {
+                                    height: 100%;
+                                    width: 100%;
+                                    img {
+                                        height: 100%;
+                                        width: 100%;
+                                        object-fit: cover;
+                                    }
+                                }
+                            }
+                            .col-8 {
+                                .title-link{
+                                    padding: 0px 4px 0px 14px;
+                                    a{
+                                        font-size: 14px;
+                                        color: #fff;
+                                        font-weight: 700;
+                                        transition: all .5s;
+                                        &:hover{
+                                            color:  #1e85ec;
+                                        }
+                                    }
+                                    span{
+                                        color: rgb(214,207,207);
+                                        font-size: 10px;
+                                        line-height: 2.5;
+                                        text-transform: uppercase;
+                                        font-weight: 700;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .title-cate-tag{
+                        padding: 0px 22px;
+                        .cate-tag{
+                            .cate{
+                                ul{
+                                    .cate-item{
+                                        display: flex;
+                                        justify-content: space-between;
+                                        padding: 3px 0px;
+                                        cursor: pointer;
+                                        transition: all .5;
+                                        li{
+                                            display: flex;
+                                            align-items: center;
+                                            color: lightblue;
+                                            a{
+                                                color: #fff;
+                                                font-weight: 700;
+                                                font-size: 14px;
+                                                transition: all .5s;
+                                                &:hover{
+                                                    color: #eb9413;
+                                                }
+                                            }
+                                        }
+                                        span{
+                                            color: #fff;
+                                        }
+
+                                    }
+                                }
+                            }
+                            .tag{
+                                ul.tag-list{
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                    grid-gap: 8px;
+                                    li.tag-item{
+                                        padding: 5px 8px;
+                                        background-color: #080d13;
+                                        transition: all 1s;
+                                        border-radius: 2px;
+                                        font-weight: 500;
+                                        a{
+                                            color: #fff;
+                                            font-size: 13px;
+                                        }
+                                        &:hover{
+                                            background-color: #192531;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

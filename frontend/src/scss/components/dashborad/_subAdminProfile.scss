@@ -1,0 +1,72 @@
+.sub_admin_profile{
+    .profile-contents{
+        background-color: #fff;
+        padding: 15px;
+        min-height: calc(100vh - 100px);
+        .profile-image-article{
+            display: flex;
+            grid-gap: 10px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            .profile-image-details{
+                display: flex;
+                grid-gap: 15px;
+                justify-content: center;
+                align-items: center;
+                border: 1px solid #404040;
+                padding: 5px;
+                margin-top: 10px;
+                .image{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    img{
+                        width: 200px;
+                        height: 200px;
+                        object-fit: cover;
+                    }
+                }
+                ul.profile-details{
+                    li{
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 6px;
+                        span{
+                            font-size: 17px;
+                            font-weight: 600;
+                            color: #404040;
+                            &:first-child{
+                                margin-right: 8px;
+                            }
+                        }
+                    }
+                }
+            }
+            .write-articles{
+                h2{
+                    font-size: 20px;
+                    font-weight: 600;
+                    margin-bottom: 10px;
+                }
+                .articles{
+                    display: grid;
+                    grid-template-columns: repeat(5,1fr);
+                    grid-gap: 10px;
+                    .article{
+                        border: 1px solid #c0bcbc;
+                        padding: 10px;
+                        img{
+                            width: 100%;
+                        }
+                        h3{
+                            font-size: 15px;
+                            color: #404040;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

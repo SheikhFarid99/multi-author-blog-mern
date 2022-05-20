@@ -1,0 +1,88 @@
+.home-articals{
+    margin-right: 10px;
+    display: grid;
+    grid-gap: 20px;
+    .home-artical{
+        background-color: var(--main_bg);
+        padding: 8px;
+        border-radius: 2px;
+        box-shadow: var(--shadow_color);
+        .row{
+            .col-4{
+                .home-image{
+                    .image{
+                        padding: 8px;
+                        width: 100%;
+                        height: 190px;
+                        position: relative;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
+                        span{
+                            position: absolute;
+                            padding: 4px 6px;
+                            left: 8px;
+                            bottom: 8px;
+                            background-color: rgb(39,40,112);
+                            color: #fff;
+                            font-size: 13px;
+                        }
+                    }
+                }
+            }
+            .col-8{
+                .home-artical-details{
+                    padding: 8px;
+                    .title{
+                        a{
+                            font-size: 18px;
+                            font-weight: 700;
+                            color: var(--text_color);
+                            transition: all .5s;
+                            &:hover{
+                                color: rgb(68,240,68);
+                            }
+                        }
+                    }
+                    .name-time{
+                        display: flex;
+                        flex-direction: row;
+                        span{
+                            color: gray;
+                            text-transform: uppercase;
+                            line-height: 2;
+                            margin-right: 5px;
+                            font-size: 12px;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            a{
+                                color: #000;
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                    .artical-text{
+                        margin: 5px 0px;
+                        font-size: 14px;
+                    }
+                    .read-more{
+                        margin: 8px 0px;
+                        .read-more-btn{
+                            padding: 5px 6px;
+                            background-color: #ff5722;
+                            border: navajowhite;
+                            outline: none;
+                            border-radius: 3px;
+                            cursor: pointer;
+                            a{
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
