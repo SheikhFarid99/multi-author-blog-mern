@@ -1,49 +1,53 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
 import { BsChevronRight } from "react-icons/bs";
 import { AiFillTag, AiFillDislike, AiFillLike } from "react-icons/ai";
 import { FaFacebookSquare, FaTwitterSquare, FaGithubSquare } from "react-icons/fa";
 import { ImLinkedin } from "react-icons/im";
 import Comments from './Comments';
+import { get_article_details, like_dislike_get } from '../../store/actions/home/articleReadAction';
+import htmlParser from 'react-html-parser';
 
 const ArticalDetails = () => {
+
+    const dispath = useDispatch();
+    const { slug } = useParams()
+    const { related_article, readMore, read_article, moreTag } = useSelector(state => state.homeReducer)
+
+    useEffect(() => {
+        dispath(get_article_details(slug))
+    }, [slug])
+
+    useEffect(() => {
+        dispath(like_dislike_get(slug))
+    }, [slug])
     return (
         <div className="article-details">
             <div className="path">
                 <Link to='/'>Home</Link>
                 <span className='arrow'><BsChevronRight /></span>
-                <Link>Algorithm</Link>
+                <Link to={`/artical/category/${read_article?.category_slug}`}>{read_article?.category}</Link>
                 <span className='arrow'><BsChevronRight /></span>
-                <span>Lorem Ipsum is simply dummy text of the printing</span>
+                <span>{read_article?.title}</span>
             </div>
             <div className="title">
-                <h3><Link>Lorem Ipsum is simply dummy text of the printing</Link></h3>
+                <h3><Link to="#">{read_article?.title}</Link></h3>
             </div>
             <div className="auth-time">
                 <div className="auth">
                     <h4><AiFillTag /></h4>
-                    <span><Link>Programming</Link></span>
+                    <span><Link to={`/artical/tag/${read_article?.tag_slug}`}>{read_article?.tag}</Link></span>
                 </div>
                 <div className="time">
                     <span>2 jun 2020</span>
                 </div>
             </div>
             <div className="home-artical-image">
-                <img src="http://localhost:3000/articalImage/ss.jpeg" alt="" />
+                <img src={`http://localhost:3000/articalImage/${read_article?.image}`} alt="" />
             </div>
             <div className="home-artical-text">
-                <p>Contrary to popular belief, Lorem Ipsum is not simply random text.
-                    It has roots in a piece of classical Latin literature from 45 BC,
-                    making it over 2000 years old. Richard McClintock, a Latin professor
-                    at Hampden-Sydney College in Virginia, looked up one of the more obscure
-                    Latin words, consectetur, from a Lorem Ipsum passage, and going through
-                    the cites of the word in classical literature, discovered the undoubtable
-                    source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of
-                    "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil)
-                    by Cicero, written in 45 BC. This book is a treatise on the theory
-                    of ethics, very popular during the Renaissance. The first line of
-                    Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-                <p> <img src="http://localhost:3000/articalImage/ss.jpeg" alt="" /></p>
+                <p>{htmlParser(read_article?.articleText)}</p>
             </div>
             <div className="like-dislike-view">
                 <div className="like-dislike">
@@ -65,13 +69,13 @@ const ArticalDetails = () => {
             </div>
             <div className="read-more">
                 <span>Read more : </span>
-                <Link to='/'>Lorem Ipsum is simply dummy text of the printing</Link>
+                <Link to={readMore?.slug}>{readMore?.title}</Link>
             </div>
             <div className="more-tags">
                 <span>Tags</span>
-                <Link>Computer</Link>
-                <Link>Programming</Link>
-                <Link>Java</Link>
+                {
+                    moreTag.length > 0 && moreTag.map((teg, index) => <Link to={`/artical/tag/${teg}`} key={index}>{teg.split('-').join(' ')}</Link>)
+                }
             </div>
             <div className="social-icons">
                 <a className='l1' href=""><FaFacebookSquare /></a>
@@ -84,22 +88,19 @@ const ArticalDetails = () => {
                     <h3>Related Articles</h3>
                 </div>
                 <div className="articles">
-                    <Link className='article'><img src="http://localhost:3000/articalImage/ss.jpeg" alt="" />
-                    <span>very popular during the Renaissance. The first line of</span>
-                    </Link>
-                    <Link className='article'><img src="http://localhost:3000/articalImage/ss.jpeg" alt="" />
-                    <span>very popular during the Renaissance. The first line of</span>
-                    </Link>
-                    <Link className='article'><img src="http://localhost:3000/articalImage/ss.jpeg" alt="" />
-                    <span>very popular during the Renaissance. The first line of</span>
-                    </Link>
-                    
+                    {
+                        related_article.length > 0 ? related_article.map((art, index) => <Link to={`/artical/details/${art.slug}`} className='article'>
+                            <img src={`http://localhost:3000/articalImage/${art?.image}`} alt="" />
+                            <span>very popular during the Renaissance. The first line of</span>
+                        </Link>) : <span>Related article not found</span>
+                    }
+
                 </div>
             </div>
             <div className="comment_title">
                 <h3>Article comments</h3>
             </div>
-            <Comments/>
+            <Comments />
         </div>
     )
 };

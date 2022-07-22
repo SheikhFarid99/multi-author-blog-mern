@@ -34,6 +34,4 @@ module.exports.article_validator = (data, file) => {
             error: error
         }
     }
-
-
 }

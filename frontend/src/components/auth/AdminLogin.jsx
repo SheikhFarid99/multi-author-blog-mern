@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { BsAt } from 'react-icons/bs';
 import { FaLock, FaFacebook, FaGoogle } from 'react-icons/fa';
 import Navbar from '../home/Navbar';
-import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useSelector, useDispatch } from "react-redux";
 import { admin_login } from "../../store/actions/authAction";
 
 const AdminLogin = ({history}) => {
     const dispatch = useDispatch();
-    const { loader, errorMessage, successMessage, authenticate, userInfo } = useSelector(state => state.adminReducer);
+    const { loader, errorMessage, successMessage, authenticate } = useSelector(state => state.adminReducer);
     const [state, setState] = useState({
         email: '',
         password: ''
@@ -28,10 +27,6 @@ const AdminLogin = ({history}) => {
     useEffect(()=>{
         if(authenticate){
             history.push('/dashborad');
-        }
-        if(successMessage){
-            toast.success(successMessage);
-            dispatch({type : 'LOGIN_SUCCES_MESSAGE_CLEAR'});
         }
     },[dispatch,successMessage])
 

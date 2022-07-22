@@ -1,4 +1,26 @@
-.register,.login,.admin_login {
+.verify_email {
+    width: 100%;
+    height: 100vh;
+    background-color: #f0f0f0;
+    .verify {
+        height: calc(100vh - 75px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .otp {
+            background-color: #fff;
+            padding: 10px;
+            width: 380px;
+            button {
+                color: #fff;
+                background-color: #fa5c7c;
+            }
+        }
+    }
+}
+.register,
+.login,
+.admin_login {
     height: calc(100vh - 75px);
     width: 100%;
     background-image: url(http://localhost:3000/designImage/image5.jpg);
@@ -15,11 +37,10 @@
         grid-template-columns: repeat(2, 1fr);
         align-items: center;
         .auth {
-            .login-page{
+            .login-page {
                 text-align: center;
-                a{
+                a {
                     color: #404040;
-                    
                 }
             }
             padding: 20px 30px;
@@ -29,31 +50,31 @@
                 font-size: 20px;
                 text-align: center;
             }
-            .or{
+            .or {
                 position: relative;
                 text-align: center;
                 margin: 12px;
                 &::after,
-                &::before{
+                &::before {
                     position: absolute;
-                    content: '';
+                    content: "";
                     width: 45%;
                     height: 1px;
                     background-color: #404040;
                     right: 0;
                     top: 50%;
                 }
-                &::before{
-                    content: '';
+                &::before {
+                    content: "";
                     left: 0;
                 }
             }
-            .fb-google-auth{
-                .fb-google-logo{
+            .fb-google-auth {
+                .fb-google-logo {
                     display: grid;
-                    grid-template-columns: repeat(1,1fr);
+                    grid-template-columns: repeat(1, 1fr);
                     grid-row-gap: 14px;
-                    button{
+                    button {
                         color: #fff;
                         display: flex;
                         justify-content: center;
@@ -61,26 +82,26 @@
                         font-weight: 400;
                         padding: 0.45rem 0.9rem;
                         border: 1px solid transparent;
-                        font-size: .9rem;
-                        border-radius: .15rem;
-                        transition: all .5s;
+                        font-size: 0.9rem;
+                        border-radius: 0.15rem;
+                        transition: all 0.5s;
                         width: 100%;
                         cursor: pointer;
-                        span{
+                        span {
                             margin-left: 3px;
-                            letter-spacing: .5px;
+                            letter-spacing: 0.5px;
                         }
                     }
-                    .fb button{
+                    .fb button {
                         background-color: #7443e9;
-                        &:hover{
+                        &:hover {
                             background-color: #6d3be0;
                         }
                     }
-                    .google button{
+                    .google button {
                         margin-bottom: 8px;
                         background-color: #f44336;
-                        &:hover{
+                        &:hover {
                             background-color: #d14014;
                         }
                     }
@@ -98,6 +119,9 @@
         }
         form {
             .form-group {
+                p {
+                    color: red;
+                }
                 .icon-input {
                     position: relative;
                     display: flex;
@@ -173,6 +197,7 @@
                         height: 35px;
                         border-radius: 50%;
                         border: 1px solid #c2bfbf;
+                        overflow: hidden;
                         img {
                             width: 100%;
                             height: 100%;

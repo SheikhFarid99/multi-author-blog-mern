@@ -64,7 +64,7 @@ const DashboradArticle = () => {
                         {
                             allArticle.length > 0 ? allArticle.map((art, index) =>
                                 <div className="article">
-                                    <img src="http://localhost:3000/articalImage/ss.jpeg" alt="" />
+                                    <img src={`http://localhost:3000/articalImage/${art.image}`} alt="" />
                                     <Link to={`/artical/details/${art.slug}`}>{htmlToText(art.title.slice(0, 30))}</Link>
                                     <p>{htmlToText(art.articleText.slice(0, 50))}</p>
                                     <div className="action">

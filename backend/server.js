@@ -11,6 +11,7 @@ const dbConnect = require('./config/dbConnect');
 
 const authRouter = require('./routes/authRoutes');
 const dashboadRoute = require('./routes/Dashborad/dashboradRoutes');
+const homeRoutes = require('./routes/home/homeRoutes');
 
 app.get('/',(req,res)=>{
     res.send('server is running')
@@ -32,6 +33,7 @@ app.use(cors({
 
 app.use('/rest-api',authRouter);
 app.use('/rest-api',dashboadRoute);
+app.use('/rest-api',homeRoutes)
 
 // db connect........
 dbConnect();

@@ -7,25 +7,25 @@ const initState = {
     loader: false
 }
 
-const DT = (token)=>{
+const DT = (token) => {
 
     const decodedToken = jwt_decode(token);
 
-    const expiresTime = new Date(decodedToken.exp*1000);
+    const expiresTime = new Date(decodedToken.exp * 1000);
 
-    if(new Date()> expiresTime){
+    if (new Date() > expiresTime) {
         localStorage.removeItem('blog_token');
         return null;
-    }else{
+    } else {
         return decodedToken;
     }
 }
 
 const getToken = localStorage.getItem('blog_token');
 
-if(getToken){
+if (getToken) {
     const decodeToken = DT(getToken);
-    if(decodeToken){
+    if (decodeToken) {
         initState.userInfo = decodeToken;
         initState.authenticate = true
     }
@@ -40,20 +40,19 @@ export const adminReducer = (state = initState, action) => {
             loader: true
         }
     }
-    if(type === 'LOGIN_SUCCESS'){
+    if (type === 'LOGIN_SUCCESS' || type === 'REGISTER_SUCCESS') {
         return {
             ...state,
-            loader : false,
-            authenticate : true,
-            errorMessage : '',
-            userInfo : DT(payload.token),
-            successMessage : payload.successMessage
+            loader: false,
+            authenticate: true,
+            errorMessage: '',
+            userInfo: DT(payload.token)
         }
     }
-    if(type === 'LOGIN_SUCCES_MESSAGE_CLEAR'){
+    if (type === 'LOGIN_SUCCES_MESSAGE_CLEAR') {
         return {
             ...state,
-            successMessage : ''
+            successMessage: ''
         }
     }
     if (type === "LOGIN_FAIL") {
@@ -66,10 +65,34 @@ export const adminReducer = (state = initState, action) => {
             successMessage: '',
         }
     }
-    if(type === 'LOGIN_ERROR_CLEAR'){
-        return{
+    if (type === 'LOGIN_ERROR') {
+        return {
+            ...state,
+            loader: false,
+            errorMessage: payload,
+            authenticate: false,
+            userInfo: '',
+            successMessage: '',
+        }
+    }
+    if (type === 'LOGIN_ERROR_CLEAR' || type === 'ERROR_CLEAR') {
+        return {
             ...state,
             errorMessage: "",
+        }
+    }
+    if (type === 'OTP_SEND_SUCCESS') {
+        return {
+            ...state,
+            successMessage: payload.successMessage,
+            loader: false
+        }
+    }
+    if (type === 'REGISTER_ERROR') {
+        return {
+            ...state,
+            errorMessage: payload,
+            loader: false
         }
     }
     return state;

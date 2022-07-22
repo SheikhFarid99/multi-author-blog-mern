@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const articleSchema = new Schema({
-    
+
     adminId: {
         type: String,
         required: true
@@ -73,6 +73,6 @@ const articleSchema = new Schema({
             }
         }
     ]
-}, { timeseries: true });
+}, { timestamps: true });
 
 module.exports = model('article', articleSchema);

@@ -5,12 +5,14 @@ import { adminReducer} from "./reducers/adminReducer";
 import { dashCategoryReducer} from "./reducers/dashCategoryReducer";
 import { dashTagReducer} from "./reducers/dashTagReducer";
 import { articalReducer } from "./reducers/articalReducer";
+import { homeReducer } from "./reducers/home/homeReducer";
 
 const rootReducer = combineReducers({
   adminReducer,
   dashboradCategory : dashCategoryReducer,
   dashboradTag : dashTagReducer,
-  dashboradArtical:articalReducer
+  dashboradArtical:articalReducer,
+  homeReducer
 });
 
 const middleware = [ThunkMiddleware];
