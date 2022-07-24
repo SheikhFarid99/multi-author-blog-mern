@@ -95,5 +95,116 @@ module.exports.like_dislike_get = async (req, res) => {
     } catch (error) {
         console.log(error.message)
     }
+}
 
+module.exports.like_article = async (req, res) => {
+    const { articleId, like_status, dislike_status } = req.body
+    const { userName, userId } = req
+
+    try {
+        const { like, slug, dislike } = await articleModel.findOne({ _id: articleId })
+        if (!like_status && !dislike_status) {
+            await articleModel.updateOne(
+                { _id: articleId },
+                {
+                    like: like + 1,
+                    $push: {
+                        like_dislike: {
+                            like_or_dislike: 'like',
+                            like_disliker_id: userId
+                        }
+                    }
+                }
+            )
+            res.status(200).json({ successMessage: 'you like this article' })
+        }
+        else if (like_status && !dislike_status) {
+            await articleModel.updateOne(
+                { _id: articleId },
+                {
+                    like: like - 1,
+                    $pull: {
+                        like_dislike: {
+                            like_disliker_id: userId
+                        }
+                    }
+                }
+            )
+            res.status(200).json({ successMessage: 'undo like' })
+        }
+        else if (!like_status && dislike_status) {
+            await articleModel.updateOne(
+                {
+                    _id: articleId,
+                    'like_dislike.like_disliker_id': userId
+                },
+                {
+                    like: like + 1,
+                    dislike: dislike - 1,
+                    $set: {
+                        'like_dislike.$.like_or_dislike': 'like'
+                    }
+                }
+            )
+            res.status(200).json({ successMessage: 'you like this article' })
+        }
+    } catch (error) {
+        res.status(500).json({ errorMessage: { error: "Iternal server error" } })
+    }
+}
+
+module.exports.dislike_article = async (req, res) => {
+    const { articleId, like_status, dislike_status } = req.body
+    const { userName, userId } = req
+
+    try {
+        const { like, slug, dislike } = await articleModel.findOne({ _id: articleId })
+        if (!like_status && !dislike_status) {
+            await articleModel.updateOne(
+                { _id: articleId },
+                {
+                    dislike: dislike + 1,
+                    $push: {
+                        like_dislike: {
+                            like_or_dislike: 'dislike',
+                            like_disliker_id: userId
+                        }
+                    }
+                }
+            )
+            res.status(200).json({ successMessage: 'you dislike this article' })
+        }
+        else if (!like_status && dislike_status) {
+            await articleModel.updateOne(
+                { _id: articleId },
+                {
+                    dislike: dislike - 1,
+                    $pull: {
+                        like_dislike: {
+                            like_disliker_id: userId
+                        }
+                    }
+                }
+            )
+            res.status(200).json({ successMessage: 'undo dislike' })
+        }
+        else if (like_status && !dislike_status) {
+            await articleModel.updateOne(
+                {
+                    _id: articleId,
+                    'like_dislike.like_disliker_id': userId
+                },
+                {
+                    dislike: dislike + 1,
+                    like: like - 1,
+                    $set: {
+                        'like_dislike.$.like_or_dislike': 'dislike'
+                    }
+                }
+            )
+            res.status(200).json({ successMessage: 'you dislike this article' })
+        }
+    } catch (error) {
+        res.status(500).json({ errorMessage: { error: "Iternal server error" } })
+    }
 }

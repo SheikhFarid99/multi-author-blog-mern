@@ -90,6 +90,12 @@
         .like-dislike {
             display: flex;
             justify-content: flex-end;
+            .icon.blue{
+                color: #03a9f4;
+            }
+            .icon.red{
+                color: red;
+            }
             .icon {
                 font-size: 25px;
                 padding: 0px 3px;

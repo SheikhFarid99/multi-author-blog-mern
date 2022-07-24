@@ -6,7 +6,7 @@ import { AiFillTag, AiFillDislike, AiFillLike } from "react-icons/ai";
 import { FaFacebookSquare, FaTwitterSquare, FaGithubSquare } from "react-icons/fa";
 import { ImLinkedin } from "react-icons/im";
 import Comments from './Comments';
-import { get_article_details, like_dislike_get } from '../../store/actions/home/articleReadAction';
+import { get_article_details, like_dislike_get, user_article_like, user_article_dislike } from '../../store/actions/home/articleReadAction';
 import htmlParser from 'react-html-parser';
 
 const ArticalDetails = () => {
@@ -14,6 +14,8 @@ const ArticalDetails = () => {
     const dispath = useDispatch();
     const { slug } = useParams()
     const { related_article, readMore, read_article, moreTag } = useSelector(state => state.homeReducer)
+    const { like, dislike, like_status, dislike_status, like_dislike_message } = useSelector(state => state.likeDislike)
+    const { userInfo } = useSelector(state => state.adminReducer)
 
     useEffect(() => {
         dispath(get_article_details(slug))
@@ -22,6 +24,32 @@ const ArticalDetails = () => {
     useEffect(() => {
         dispath(like_dislike_get(slug))
     }, [slug])
+
+    useEffect(() => {
+        if (like_dislike_message) {
+            dispath(like_dislike_get(slug))
+            dispath({ type: 'USER_LIKE_DISLIKE_MESSAGE_CLEAR' })
+        }
+    }, [like_dislike_message])
+
+    const article_like = (e) => {
+        e.preventDefault()
+        const obj = {
+            articleId: read_article._id,
+            like_status,
+            dislike_status
+        }
+        dispath(user_article_like(obj))
+    }
+    const article_dislike = (e) => {
+        e.preventDefault()
+        const obj = {
+            articleId: read_article._id,
+            like_status,
+            dislike_status
+        }
+        dispath(user_article_dislike(obj))
+    }
     return (
         <div className="article-details">
             <div className="path">
@@ -52,14 +80,16 @@ const ArticalDetails = () => {
             <div className="like-dislike-view">
                 <div className="like-dislike">
                     <div className="dislike">
-                        <button className='icon red'><AiFillDislike /></button>
-                        {/* <button disabled className='icon'><AiFillDislike /></button>*/}
-                        <div className="like-number">(12)</div>
+                        {
+                            userInfo && userInfo.role === 'user' ? <button onClick={article_dislike} className={dislike_status === 'dislike' ? 'icon red' : 'icon'} ><AiFillDislike /></button> : <button disabled className='icon'><AiFillDislike /></button>
+                        }
+                        <div className="like-number">({dislike})</div>
                     </div>
                     <div className="like">
-                        <button className='icon blue'><AiFillLike /></button>
-                        {/*<button disabled className='icon'><AiFillLike /></button>*/}
-                        <div className="dislike-number">(12)</div>
+                        {
+                            userInfo && userInfo.role === 'user' ? <button onClick={article_like} className={like_status === 'like' ? 'icon blue' : 'icon'} ><AiFillLike /></button> : <button disabled className='icon'><AiFillLike /></button>
+                        }
+                        <div className="dislike-number">({like})</div>
                     </div>
                 </div>
                 <div className="view">
@@ -89,7 +119,7 @@ const ArticalDetails = () => {
                 </div>
                 <div className="articles">
                     {
-                        related_article.length > 0 ? related_article.map((art, index) => <Link to={`/artical/details/${art.slug}`} className='article'>
+                        related_article.length > 0 ? related_article.map((art, index) => <Link key={index} to={`/artical/details/${art.slug}`} className='article'>
                             <img src={`http://localhost:3000/articalImage/${art?.image}`} alt="" />
                             <span>very popular during the Renaissance. The first line of</span>
                         </Link>) : <span>Related article not found</span>

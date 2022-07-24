@@ -29,3 +29,23 @@ module.exports.user = async (req, res, next) => {
         next();
     }
 }
+module.exports.auth_user = async (req, res, next) => {
+    const { blog_token } = req.cookies;
+    if (!blog_token) {
+        res.status(409).json({ errorMessage: { error: 'Please login first' } })
+    } else {
+        const deCodeToken = await jwt.verify(blog_token, process.env.SECRET);
+        if (deCodeToken.role === 'user' && deCodeToken.accessStatus === 'unblock') {
+            req.userId = deCodeToken.id
+            req.role = deCodeToken.role
+            req.userName = deCodeToken.name
+            next()
+        } else {
+            res.status(404).json({
+                errorMessage: {
+                    error: 'you can not access'
+                }
+            })
+        }
+    }
+}
