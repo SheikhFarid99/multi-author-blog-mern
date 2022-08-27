@@ -26,5 +26,11 @@ export const homeCommentReducer = (state = initState, action) => {
             comment_message: '',
         }
     }
+    if (type === 'COMMENT_GET_SUCCESS') {
+        return {
+            ...state,
+            comment: payload.comment
+        }
+    }
     return state
 }
