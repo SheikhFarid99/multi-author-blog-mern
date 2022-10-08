@@ -26,7 +26,33 @@ export const get_comment = (articleId) => async (dispatch) => {
 export const reply_comment = (data) => async (dispatch) => {
     try {
         const response = await axios.post(`http://localhost:5000/rest-api/comment-reply`, data, { withCredentials: true })
-        console.log(response)
+        dispatch({
+            type: 'REPLY_SUCCESS',
+            payload: response.data
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const comment_delete = (data) => async (dispatch) => {
+    try {
+        const response = await axios.post(`http://localhost:5000/rest-api/comment-home-delete`, data, { withCredentials: true })
+        dispatch({
+            type: 'COMMENT_DELATE_SUCCESS',
+            payload: response.data
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const comment_reply_delete = (data) => async (dispatch) => {
+    try {
+        const response = await axios.post(`http://localhost:5000/rest-api/comment-reply-home-delete`, data, { withCredentials: true })
+        dispatch({
+            type: 'COMMENT_REPLY_DELATE_SUCCESS',
+            payload: response.data
+        })
     } catch (error) {
         console.log(error)
     }

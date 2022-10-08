@@ -1,4 +1,5 @@
 const articleModel = require('../../models/articleModel')
+const notificationModel = require('../../models/NotificationModel')
 module.exports.getArticleDetails = async (req, res) => {
     const { articleSlug } = req.params;
     try {
@@ -98,7 +99,7 @@ module.exports.like_dislike_get = async (req, res) => {
 }
 
 module.exports.like_article = async (req, res) => {
-    const { articleId, like_status, dislike_status } = req.body
+    const { articleId, like_status, dislike_status, adminId } = req.body
     const { userName, userId } = req
 
     try {
@@ -116,6 +117,11 @@ module.exports.like_article = async (req, res) => {
                     }
                 }
             )
+            await notificationModel.create({
+                subject: `${userName} like your article`,
+                slug,
+                adminId
+            })
             res.status(200).json({ successMessage: 'you like this article' })
         }
         else if (like_status && !dislike_status) {
@@ -130,6 +136,11 @@ module.exports.like_article = async (req, res) => {
                     }
                 }
             )
+            await notificationModel.create({
+                subject: `${userName} like remove your article`,
+                slug,
+                adminId
+            })
             res.status(200).json({ successMessage: 'undo like' })
         }
         else if (!like_status && dislike_status) {
@@ -146,6 +157,11 @@ module.exports.like_article = async (req, res) => {
                     }
                 }
             )
+            await notificationModel.create({
+                subject: `${userName} like your article`,
+                slug,
+                adminId
+            })
             res.status(200).json({ successMessage: 'you like this article' })
         }
     } catch (error) {
@@ -172,6 +188,11 @@ module.exports.dislike_article = async (req, res) => {
                     }
                 }
             )
+            await notificationModel.create({
+                subject: `${userName} dislike your article`,
+                slug,
+                adminId
+            })
             res.status(200).json({ successMessage: 'you dislike this article' })
         }
         else if (!like_status && dislike_status) {
@@ -186,6 +207,11 @@ module.exports.dislike_article = async (req, res) => {
                     }
                 }
             )
+            await notificationModel.create({
+                subject: `${userName} remove dislike your article`,
+                slug,
+                adminId
+            })
             res.status(200).json({ successMessage: 'undo dislike' })
         }
         else if (like_status && !dislike_status) {
@@ -202,6 +228,11 @@ module.exports.dislike_article = async (req, res) => {
                     }
                 }
             )
+            await notificationModel.create({
+                subject: `${userName} dislike your article`,
+                slug,
+                adminId
+            })
             res.status(200).json({ successMessage: 'you dislike this article' })
         }
     } catch (error) {

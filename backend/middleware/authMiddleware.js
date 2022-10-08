@@ -49,3 +49,30 @@ module.exports.auth_user = async (req, res, next) => {
         }
     }
 }
+
+module.exports.auth_sub_admin = async (req, res, next) => {
+    const { blog_token } = req.cookies;
+    if (!blog_token) {
+        res.status(404).json({ errorMessage: { error: 'Please login first' } })
+    } else {
+        const deCodeToken = await jwt.verify(blog_token, process.env.SECRET);
+        if (deCodeToken.role === 'sub admin' && deCodeToken.accessStatus === 'unblock') {
+            req.adminId = deCodeToken.id;
+            req.adminName = deCodeToken.name;
+            req.role = deCodeToken.role
+            next()
+        } else if (deCodeToken.role === 'admin') {
+            req.adminId = deCodeToken.id;
+            req.adminName = deCodeToken.name;
+            req.role = deCodeToken.role
+            next()
+        }
+        else {
+            res.status(404).json({
+                errorMessage: {
+                    error: 'you can not access'
+                }
+            })
+        }
+    }
+}

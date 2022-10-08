@@ -37,7 +37,8 @@ const ArticalDetails = () => {
         const obj = {
             articleId: read_article._id,
             like_status,
-            dislike_status
+            dislike_status,
+            adminId: read_article.adminId
         }
         dispath(user_article_like(obj))
     }
@@ -46,7 +47,8 @@ const ArticalDetails = () => {
         const obj = {
             articleId: read_article._id,
             like_status,
-            dislike_status
+            dislike_status,
+            adminId: read_article.adminId
         }
         dispath(user_article_dislike(obj))
     }

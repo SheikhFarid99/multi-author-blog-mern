@@ -12,7 +12,7 @@ export const homeCommentReducer = (state = initState, action) => {
             loader: true
         }
     }
-    if (type === 'COMMENT_SUCCESS') {
+    if (type === 'COMMENT_SUCCESS' || type === 'REPLY_SUCCESS') {
         return {
             ...state,
             comment_message: payload.successMessage,
@@ -30,6 +30,12 @@ export const homeCommentReducer = (state = initState, action) => {
         return {
             ...state,
             comment: payload.comment
+        }
+    }
+    if (type === 'COMMENT_DELATE_SUCCESS' || type === 'COMMENT_REPLY_DELATE_SUCCESS') {
+        return {
+            ...state,
+            comment_message: payload.successMessage
         }
     }
     return state
