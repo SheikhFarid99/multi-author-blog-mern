@@ -7,7 +7,14 @@ import Dashborad from "./components/dashborad/Dashborad";
 import Home from './components/home/Home';
 import EmailVerify from './components/auth/EmailVerify'
   ;
+import { userView } from './store/actions/home/homeAction'
+import { useEffect } from "react";
+import { useDispatch } from 'react-redux'
 function App() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(userView())
+  }, [])
   return (
     <Router>
       <Switch>
