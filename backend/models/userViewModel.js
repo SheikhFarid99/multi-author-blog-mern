@@ -9,13 +9,13 @@ const userViewSchema = new Schema({
         type: Number,
         required: true
     },
-    uniqeIp: {
+    uniqeViewer: {
         type: Array,
         default: []
     },
-    manthArray: [
+    monthArray: [
         {
-            manth: {
+            month: {
                 type: Number,
                 default: 1
             },
@@ -23,10 +23,10 @@ const userViewSchema = new Schema({
                 type: Number,
                 default: 0
             },
-            ip: []
+            uniqeViewer: []
         },
         {
-            manth: {
+            month: {
                 type: Number,
                 default: 2
             },
@@ -34,10 +34,10 @@ const userViewSchema = new Schema({
                 type: Number,
                 default: 0
             },
-            ip: []
+            uniqeViewer: []
         },
         {
-            manth: {
+            month: {
                 type: Number,
                 default: 3
             },
@@ -45,10 +45,10 @@ const userViewSchema = new Schema({
                 type: Number,
                 default: 0
             },
-            ip: []
+            uniqeViewer: []
         },
         {
-            manth: {
+            month: {
                 type: Number,
                 default: 4
             },
@@ -56,10 +56,10 @@ const userViewSchema = new Schema({
                 type: Number,
                 default: 0
             },
-            ip: []
+            uniqeViewer: []
         },
         {
-            manth: {
+            month: {
                 type: Number,
                 default: 5
             },
@@ -67,10 +67,10 @@ const userViewSchema = new Schema({
                 type: Number,
                 default: 0
             },
-            ip: []
+            uniqeViewer: []
         },
         {
-            manth: {
+            month: {
                 type: Number,
                 default: 6
             },
@@ -78,10 +78,10 @@ const userViewSchema = new Schema({
                 type: Number,
                 default: 0
             },
-            ip: []
+            uniqeViewer: []
         },
         {
-            manth: {
+            month: {
                 type: Number,
                 default: 7
             },
@@ -89,10 +89,10 @@ const userViewSchema = new Schema({
                 type: Number,
                 default: 0
             },
-            ip: []
+            uniqeViewer: []
         },
         {
-            manth: {
+            month: {
                 type: Number,
                 default: 8
             },
@@ -100,10 +100,10 @@ const userViewSchema = new Schema({
                 type: Number,
                 default: 0
             },
-            ip: []
+            uniqeViewer: []
         },
         {
-            manth: {
+            month: {
                 type: Number,
                 default: 9
             },
@@ -111,10 +111,10 @@ const userViewSchema = new Schema({
                 type: Number,
                 default: 0
             },
-            ip: []
+            uniqeViewer: []
         },
         {
-            manth: {
+            month: {
                 type: Number,
                 default: 10
             },
@@ -122,10 +122,10 @@ const userViewSchema = new Schema({
                 type: Number,
                 default: 0
             },
-            ip: []
+            uniqeViewer: []
         },
         {
-            manth: {
+            month: {
                 type: Number,
                 default: 11
             },
@@ -133,10 +133,10 @@ const userViewSchema = new Schema({
                 type: Number,
                 default: 0
             },
-            ip: []
+            uniqeViewer: []
         },
         {
-            manth: {
+            month: {
                 type: Number,
                 default: 12
             },
@@ -144,7 +144,9 @@ const userViewSchema = new Schema({
                 type: Number,
                 default: 0
             },
-            ip: []
+            uniqeViewer: []
         },
     ]
 }, { timestamps: true })
+
+module.exports = model('userView', userViewSchema)

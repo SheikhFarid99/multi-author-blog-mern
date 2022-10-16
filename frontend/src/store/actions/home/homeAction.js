@@ -73,7 +73,7 @@ export const get_tag_article = (tagSlug, currentPage) => async (dispatch) => {
 
 export const userView = () => async () => {
     try {
-        await axios.put(`http://localhost:5000/rest-api/user-view`, { withCredentials: true })
+        await axios.get(`http://localhost:5000/rest-api/user-view`, { withCredentials: true })
     } catch (error) {
 
     }

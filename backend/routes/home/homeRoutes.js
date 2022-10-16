@@ -15,6 +15,6 @@ router.get('/home/like-dislike-get/:articleSlug', user, like_dislike_get);
 router.put('/user-like-article', auth_user, like_article);
 router.put('/user-dislike-article', auth_user, dislike_article);
 
-router.put('/user-view', userViewController);
+router.get('/user-view', userViewController);
 
 module.exports = router;
