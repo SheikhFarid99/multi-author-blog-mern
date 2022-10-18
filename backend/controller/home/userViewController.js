@@ -23,14 +23,57 @@ const userViewController = async (req, res) => {
                     }, {
                         monthArray
                     })
-                    res.status(200).json({message:"success"})
+                    res.status(200).json({ message: "success" })
                 }
+            } else {
+                let monthArray = checkYear.monthArray;
+                const makeCookie = Math.floor(Math.random() * 50000000 + 5434374) + Date.now();
+                const cookieString = makeCookie.toString()
+                monthArray[month - 1].viewer = 1 + monthArray[month - 1].viewer;
+                monthArray[month - 1].uniqeViewer = [...monthArray[month - 1].uniqeViewer, cookieString]
+
+                await userViewModel.updateOne({
+                    year
+                }, {
+                    viewer: checkYear.viewer + 1,
+                    monthArray,
+                    $push: {
+                        uniqeViewer: cookieString
+                    }
+                })
+                const option = {
+                    expires: new Date(Date.now() + 366 * 24 * 60 * 60 * 1000)
+                }
+                return res.status(201).cookie('userVisite', cookieString, option).json({ successMessage: 'success' })
             }
         } else {
+            let monthArray = [];
+            for (let i = 0; i < 12; i++) {
+                monthArray.push({
+                    viewer: 0,
+                    month: i + 1,
+                    uniqeViewer: []
+                })
+            }
+            const makeCookie = Math.floor(Math.random() * 50000000 + 5434374) + Date.now();
+            const cookieString = makeCookie.toString()
+            monthArray[month - 1].month = month
+            monthArray[month - 1].viewer = 1
+            monthArray[month - 1].uniqeViewer = [cookieString]
 
+            await userViewModel.create({
+                viewer: 1,
+                year,
+                monthArray,
+                uniqeViewer: [cookieString]
+            })
+            const option = {
+                expires: new Date(Date.now() + 366 * 24 * 60 * 60 * 1000)
+            }
+            return res.status(201).cookie('userVisite', cookieString, option).json({ successMessage: 'success' })
         }
     } catch (error) {
-
+        return res.status(500).json({ errorMessage: 'Internal server error' })
     }
 }
 
