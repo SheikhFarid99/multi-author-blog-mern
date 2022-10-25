@@ -6,12 +6,22 @@ import Chart from "react-apexcharts";
 import { useDispatch, useSelector } from 'react-redux';
 import { dashboard_index_data_get } from '../../store/actions/Dashborad/dashboardAction';
 const DashboradIndex = () => {
+    const { dashboard_data, articleCount, categoryCount, tagCount, subAdminCount } = useSelector(state => state.dashboardIndex)
     const dispatch = useDispatch()
+
+    let graphData = []
+    if (dashboard_data.monthArray?.length > 0) {
+
+        for (let i = 0; i < 12; i++) {
+            graphData.push(dashboard_data.monthArray[i].viewer)
+        }
+
+    }
     const chartOptions = {
         series: [
             {
                 name: "Visitor",
-                data: [100, 120, 90, 200, 244, 324, 123, 213, 123, 342, 321, 133]
+                data: graphData
             }
         ],
         options: {
@@ -38,7 +48,7 @@ const DashboradIndex = () => {
     }
     useEffect(() => {
         dispatch(dashboard_index_data_get())
-    })
+    }, [])
     return (
         <div className='dashborad-main-content-elements'>
             <div className="dashborad-elements">
@@ -48,7 +58,7 @@ const DashboradIndex = () => {
                             <BsFillPeopleFill />
                         </div>
                         <div className="card_info">
-                            <h2>23</h2>
+                            <h2>{dashboard_data.viewer > 1 ? `${dashboard_data.viewer - 1}+` : dashboard_data.viewer}</h2>
                             <span>Visitoes</span>
                         </div>
                     </div>
@@ -57,7 +67,7 @@ const DashboradIndex = () => {
                             <BsFillPeopleFill />
                         </div>
                         <div className="card_info">
-                            <h2>23</h2>
+                            <h2>{articleCount > 1 ? `${articleCount - 1}+` : articleCount}</h2>
                             <span>Articles</span>
                         </div>
                     </Link>
@@ -66,7 +76,7 @@ const DashboradIndex = () => {
                             <FaRegCaretSquareRight />
                         </div>
                         <div className="card_info">
-                            <h2>23</h2>
+                            <h2>{categoryCount > 1 ? `${categoryCount - 1}+` : categoryCount}</h2>
                             <span>Categorys</span>
                         </div>
                     </Link>
@@ -75,7 +85,7 @@ const DashboradIndex = () => {
                             <FaTag />
                         </div>
                         <div className="card_info">
-                            <h2>23</h2>
+                            <h2>{tagCount > 1 ? `${tagCount - 1}+` : tagCount}</h2>
                             <span>Tags</span>
                         </div>
                     </Link>
@@ -84,7 +94,7 @@ const DashboradIndex = () => {
                             <FaRegUser />
                         </div>
                         <div className="card_info">
-                            <h2>23</h2>
+                            <h2>{subAdminCount > 1 ? `${subAdminCount - 1}+` : subAdminCount}</h2>
                             <span>Sub Admins</span>
                         </div>
                     </Link>
