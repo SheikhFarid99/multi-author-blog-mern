@@ -16,3 +16,15 @@ export const dashboard_index_data_get = () => async (dispatch) => {
         console.log(error)
     }
 }
+export const get_notification = (id) => async (dispatch) => {
+    try {
+        console.log(id)
+        const { data: { notification } } = await axios.get(`http://localhost:5000/rest-api/get-notification/${id}`, { withCredentials: true });
+        dispatch({
+            type: 'NOTIFICATION_GET_SUCCESS',
+            payload: notification
+        })
+    } catch (error) {
+
+    }
+}

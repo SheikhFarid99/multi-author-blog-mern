@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-const AdminInfo = () => {
+const AdminInfo = ({ profileModelShow, userInfo }) => {
   return (
-    <div className='adminInfo'>
+    <div className={`adminInfo ${profileModelShow ? 'show' : ''}`}>
       <div className="image-email">
-        <img src="http://localhost:3000/designImage/image4.jpg" alt="" />
-        <span>farid@gmail.com</span>
+        <img src={userInfo.image} alt="" />
+        <span>{userInfo.email}</span>
       </div>
       <ul>
         <li><Link to='/dashborad/profile'>Profile</Link></li>

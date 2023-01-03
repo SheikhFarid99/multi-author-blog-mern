@@ -4,6 +4,7 @@ const indexState = {
     categoryCount: 0,
     tagCount: 0,
     subAdminCount: 0,
+    notifications: []
 
 }
 export const dashboardReducer = (state = indexState, action) => {
@@ -16,6 +17,12 @@ export const dashboardReducer = (state = indexState, action) => {
             categoryCount: payload.categoryCount,
             tagCount: payload.tagCount,
             subAdminCount: payload.subAdminCount
+        }
+    }
+    if (type === 'NOTIFICATION_GET_SUCCESS') {
+        return {
+            ...state,
+            notifications: payload
         }
     }
     return state;

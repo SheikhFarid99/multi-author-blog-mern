@@ -4,7 +4,7 @@ module.exports.home_article_get = async (req, res) => {
     let { currentPage, searchValue } = req.query;
 
     currentPage = parseInt(currentPage);
-    const parPage = 2;
+    const parPage = 5;
     const skipPage = parseInt(currentPage - 1) * parPage;
     let articles = [];
 

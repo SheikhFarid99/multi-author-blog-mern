@@ -170,7 +170,7 @@ module.exports.like_article = async (req, res) => {
 }
 
 module.exports.dislike_article = async (req, res) => {
-    const { articleId, like_status, dislike_status } = req.body
+    const { articleId, like_status, dislike_status, adminId } = req.body
     const { userName, userId } = req
 
     try {
