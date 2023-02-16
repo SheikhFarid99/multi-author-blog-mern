@@ -61,7 +61,6 @@ export const user_login = (data) => async (dispatch) => {
     dispatch({ type: 'LOADER_RUN' })
     try {
         const response = await axios.post('http://localhost:5000/rest-api/user-login', data, { withCredentials: true });
-        console.log(response)
         localStorage.setItem('blog_token', response.data.token)
         dispatch({
             type: "LOGIN_SUCCESS",
@@ -74,4 +73,24 @@ export const user_login = (data) => async (dispatch) => {
         })
     }
 }
+
+
+export const logout_user = ({ role, history }) => async (dispatch) => {
+    try {
+        await axios.get('http://localhost:5000/rest-api/logout-user', { withCredentials: true });
+        localStorage.removeItem('blog_token')
+        dispatch({
+            type : 'LOGOUT_SUCCESS'
+        })
+        if (role === 'admin') {
+            history.push('/admin/login')
+        } else {
+            history.push('/login')
+        }
+
+    } catch (error) {
+        console.log(error.response.data)
+    }
+}
+
 

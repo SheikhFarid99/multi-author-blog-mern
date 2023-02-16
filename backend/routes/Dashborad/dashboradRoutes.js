@@ -5,7 +5,7 @@ const { tag_add, tag_get, tag_delete, tag_edit, tag_update } = require('../../co
 const { get_tag_category, add_artical, get_artical, edit_artical, update_artical, delete_artical } = require('../../controller/Dashborad/articalController');
 
 const { admin_middleware, auth_sub_admin } = require('../../middleware/authMiddleware');
-const { get_dashboard_index_data, get_notification } = require('../../controller/Dashborad/indexController')
+const { get_dashboard_index_data, get_notification,seen_notification,delete_notification } = require('../../controller/Dashborad/indexController')
 // category route
 router.post('/add-category', admin_middleware, category_add);
 router.get('/get-category', admin_middleware, category_get);
@@ -32,7 +32,9 @@ router.delete('/delete-artical/:articleId', admin_middleware, delete_artical);
 
 router.get('/get-dashboard-index-data', auth_sub_admin, get_dashboard_index_data)
 
-router.get('/get-notification/:id', auth_sub_admin, get_notification)
+router.get('/get-notification/:id', auth_sub_admin, get_notification);
+router.get('/seen-notification/:id', auth_sub_admin, seen_notification) ;
+router.get('/delete-notification/:id', auth_sub_admin, delete_notification)
 
 
 module.exports = router;

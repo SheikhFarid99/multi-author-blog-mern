@@ -95,5 +95,12 @@ export const adminReducer = (state = initState, action) => {
             loader: false
         }
     }
+    if (type === 'LOGOUT_SUCCESS') {
+        return {
+            ...state,
+            userInfo: '',
+            authenticate: false,
+        }
+    }
     return state;
 }

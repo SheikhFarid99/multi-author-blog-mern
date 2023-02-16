@@ -5,15 +5,16 @@ import moment from 'moment'
 import { Link } from "react-router-dom";
 import AdminInfo from './AdminInfo';
 import UserMessage from './UserMessage';
+import toast, { Toaster } from "react-hot-toast";
 import { useSelector, useDispatch } from 'react-redux';
-import { get_notification } from '../../store/actions/Dashborad/dashboardAction';
+import { get_notification, seen_notification, delete_notification } from '../../store/actions/Dashborad/dashboardAction';
 import { useEffect } from 'react';
 
 const DashboradNavbar = () => {
 
     const dispath = useDispatch()
     const { userInfo } = useSelector(state => state.adminReducer)
-    const { notifications } = useSelector(state => state.dashboardIndex)
+    const { notifications, successMessage } = useSelector(state => state.dashboardIndex)
     const [profileModelShow, setProfileModelShow] = useState(false)
     const [nModelShow, setNModelShow] = useState(false)
 
@@ -37,9 +38,33 @@ const DashboradNavbar = () => {
     useEffect(() => {
         dispath(get_notification(userInfo.id))
     }, [])
+
+    useEffect(() => {
+        if (successMessage) {
+            toast.success(successMessage);
+            dispath({
+                type: "N_SUCCESS_MESSAGE_CLEAR"
+            })
+            dispath(get_notification(userInfo.id))
+        }
+    }, [successMessage])
+
+    const seenNotification = (id) => {
+        dispath(seen_notification(id))
+    }
     return (
         <>
             <div className='dashborad-navbar'>
+                <Toaster position={'bottom-center'}
+                    reverseOrder={false}
+                    toastOptions={
+                        {
+                            style: {
+                                fontSize: '15px'
+                            }
+                        }
+                    }
+                />
                 <div className="dashborad-navbar-left-side">
                     <label htmlFor="" className='dash'><span>D</span></label>
                     <label className='bar' htmlFor="sidebar"><span><BsListUl /></span></label>
@@ -55,7 +80,9 @@ const DashboradNavbar = () => {
                             <div className="natification">
                                 <div onClick={nModel}>
                                     <span><BsBell /></span>
-                                    <div className="nCount">{notifications.length}</div>
+                                    {
+                                        notifications.length > 0 && <div className="nCount">{notifications.length}</div>
+                                    }
                                 </div>
                                 {
 
@@ -63,9 +90,9 @@ const DashboradNavbar = () => {
                                 <div className={`natifications ${nModelShow ? 'show' : ''}`}>
                                     <ul>
                                         {
-                                            notifications.map((n, i) => <li key={i}>
-                                                <Link to={`/artical/details/${n.slug}`}>{n.subject}</Link>
-                                                <div className="nDelete"><FaTrash /></div>
+                                            notifications.map((n, i) => <li className={n.status === 'seen' ? '' : 'bg'} key={i}>
+                                                <Link onClick={() => seenNotification(n._id)} to={`/artical/details/${n.slug}`}>{n.subject}</Link>
+                                                <div onClick={() => dispath(delete_notification(n._id))} className="nDelete"><FaTrash /></div>
                                             </li>)
                                         }
                                     </ul>

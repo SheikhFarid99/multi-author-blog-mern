@@ -260,3 +260,11 @@ module.exports.user_login = async (req, res) => {
         }
     }
 }
+
+module.exports.user_logout = async (req, res) => {
+    const option = {
+        expires: new Date(Date.now())
+    }
+    res.cookie('blog_token', null, option)
+    res.status(200).json({ message: 'seccess' })
+}

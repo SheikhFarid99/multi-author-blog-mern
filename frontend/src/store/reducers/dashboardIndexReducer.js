@@ -4,7 +4,8 @@ const indexState = {
     categoryCount: 0,
     tagCount: 0,
     subAdminCount: 0,
-    notifications: []
+    notifications: [],
+    successMessage: ''
 
 }
 export const dashboardReducer = (state = indexState, action) => {
@@ -23,6 +24,19 @@ export const dashboardReducer = (state = indexState, action) => {
         return {
             ...state,
             notifications: payload
+        }
+    }
+    if (type === 'NOTIFICATION_DELETE_SUCCESS') {
+        console.log(payload)
+        return {
+            ...state,
+            successMessage: payload.message
+        }
+    }
+    if (type === 'N_SUCCESS_MESSAGE_CLEAR') {
+        return {
+            ...state,
+            successMessage: ''
         }
     }
     return state;

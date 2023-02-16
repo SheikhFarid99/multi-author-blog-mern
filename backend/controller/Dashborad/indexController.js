@@ -54,3 +54,32 @@ module.exports.get_notification = async (req, res) => {
         })
     }
 }
+
+module.exports.seen_notification = async (req, res) => {
+    const { id } = req.params;
+    try {
+        await notificationModel.findByIdAndUpdate(id, { status: 'seen' });
+
+        return res.status(200).json({ message: 'success' })
+    } catch (error) {
+        res.status(500).json({
+            errorMessage: {
+                error: 'Internal server error'
+            }
+        })
+    }
+}
+
+module.exports.delete_notification = async (req, res) => {
+    const { id } = req.params;
+    try {
+        await notificationModel.findByIdAndDelete(id);
+        return res.status(200).json({ message: 'Notification delete success' })
+    } catch (error) {
+        res.status(500).json({
+            errorMessage: {
+                error: 'Internal server error'
+            }
+        })
+    }
+}

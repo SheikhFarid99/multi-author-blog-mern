@@ -161,6 +161,10 @@
         display: flex;
         flex-direction: column;
         grid-gap: 10px;
+        li.bg{
+            padding: 2px;
+            background-color: #cecece;
+        }
         li {
             position: relative;
             padding: 3px;
